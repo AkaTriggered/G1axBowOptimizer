@@ -10,23 +10,31 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(CrossbowItem.class)
 public class CrossbowItemMixin {
     
     @Inject(method = "onStoppedUsing", at = @At("HEAD"))
-    private void onCrossbowRelease(ItemStack stack, World world, LivingEntity user, int remainingUseTicks, CallbackInfo ci) {
-        if (world.isClient() && user instanceof PlayerEntity) {
-            BowUseOptimizer.stopUsing();
+    private void onCrossbowRelease(ItemStack stack, World world, LivingEntity user, int remainingUseTicks, CallbackInfoReturnable<ItemStack> cir) {
+        try {
+            if (world.isClient() && user instanceof PlayerEntity) {
+                BowUseOptimizer.stopUsing();
+            }
+        } catch (Exception e) {
         }
     }
 
     @Inject(method = "usageTick", at = @At("HEAD"))
     private void onUsageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks, CallbackInfo ci) {
-        if (world.isClient() && user instanceof PlayerEntity) {
-            if (!BowUseOptimizer.isUsing()) {
-                BowUseOptimizer.startUsing();
+        try {
+            if (world.isClient() && user instanceof PlayerEntity) {
+                if (!BowUseOptimizer.isUsing()) {
+                    BowUseOptimizer.startUsing();
+                }
             }
+        } catch (Exception e) {
+
         }
     }
 }
