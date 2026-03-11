@@ -1,0 +1,15 @@
+{
+	"required": true,
+	"package": "dev.g1ax.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"client": [
+		"BowItemMixin",
+		"CrossbowItemMixin",
+		"ClientPlayerInteractionManagerMixin",
+		"ClientPlayNetworkHandlerMixin",
+		"ClientPlayerEntityMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

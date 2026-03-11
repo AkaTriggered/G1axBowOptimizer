@@ -1,0 +1,31 @@
+{
+	"schemaVersion": 1,
+	"id": "g1axbowoptimizer",
+	"version": "${version}",
+	"name": "G1axBowOptimizer",
+	"description": "Removes client-side bow draw and release delay, processing bow mechanics client-side for instant, consistent shots on any ping.",
+	"authors": [
+		"AkaTriggered"
+	],
+	"contact": {
+		"homepage": "https://github.com/AkaTriggered/G1axBowOptimizer",
+		"sources": "https://github.com/AkaTriggered/G1axBowOptimizer"
+	},
+	"license": "MIT",
+	"icon": "assets/g1axbowoptimizer/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"dev.g1ax.G1axBowOptimizerClient"
+		]
+	},
+	"mixins": [
+		"g1axbowoptimizer.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.18.4",
+		"minecraft": "~1.21.11",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}
