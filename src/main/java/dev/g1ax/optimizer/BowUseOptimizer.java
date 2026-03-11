@@ -1,24 +1,40 @@
 package dev.g1ax.optimizer;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class BowUseOptimizer {
+    private static final Logger LOGGER = LoggerFactory.getLogger("G1axBowOptimizer");
     private static int clientUseTicks = 0;
     private static boolean isUsing = false;
     private static long lastReleaseTime = 0;
 
     public static void startUsing() {
-        isUsing = true;
-        clientUseTicks = 0;
+        try {
+            isUsing = true;
+            clientUseTicks = 0;
+        } catch (Exception e) {
+            LOGGER.error("Error starting bow use", e);
+        }
     }
 
     public static void stopUsing() {
-        isUsing = false;
-        clientUseTicks = 0;
-        lastReleaseTime = System.currentTimeMillis();
+        try {
+            isUsing = false;
+            clientUseTicks = 0;
+            lastReleaseTime = System.currentTimeMillis();
+        } catch (Exception e) {
+            LOGGER.error("Error stopping bow use", e);
+        }
     }
 
     public static void tick() {
-        if (isUsing) {
-            clientUseTicks++;
+        try {
+            if (isUsing) {
+                clientUseTicks++;
+            }
+        } catch (Exception e) {
+            LOGGER.error("Error in bow tick", e);
         }
     }
 
